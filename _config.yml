@@ -1,4 +1,4 @@
-theme              : jekell-theme-cayman
+#theme              : jekell-theme-cayman
 
 locale             : "em-US"
 title              : "Thomas Maltesen"
