@@ -1,3 +1,5 @@
+theme              : jekell-theme-cayman
+
 locale             : "em-US"
 title              : "Thomas Maltesen"
 title_separator    : "-"
