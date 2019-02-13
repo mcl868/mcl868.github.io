@@ -1,6 +1,6 @@
 locale             : "em-US"
 title              : "Thomas Maltesen"
 title_separator    : "-"
-name               : &name "Thomas Maltesen"
-description        : &description "PhD student"
+name               : "Thomas Maltesen"
+description        : "PhD student"
 url                : https://mcl868.github.io/
