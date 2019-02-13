@@ -1,3 +1,51 @@
 theme: jekyll-theme-cayman
-title: Welcome to Thomas Maltesen
-description: constructions
+
+locale             : "em-US"
+title              : "Thomas Maltesen"
+title_separator    : "-"
+name               : &name "Thomas Maltesen"
+description        : &description "PhD student"
+url                : https://mcl868.github.io/
+
+repository         :
+
+
+
+# Site Author
+author:
+  name             : "Thomas Maltesen"
+  avatar           : 
+  bio              : 
+  location         : 
+  employer         :
+  googlescholar    : 
+  email            :
+  uri              :
+  bitbucket        :
+  codepen          :
+  dribbble         :
+  flickr           :
+  facebook         :
+  foursquare       :
+  github           : "mcl868"
+  google_plus      :
+  keybase          :
+  instagram        :
+  lastfm           :
+  linkedin         : 
+  orcid            : 
+  pinterest        :
+  soundcloud       :
+  stackoverflow    : 
+  steam            :
+  tumblr           :
+  twitter          : 
+  vine             :
+  weibo            :
+  xing             :
+  youtube          :
+  wikipedia        :
+  wordpress        : 
+  
+  
+  
