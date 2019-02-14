@@ -1,21 +1,20 @@
-# Thomas Maltesen
+# try
 
-## [CV](https://github.com/mcl868/mcl868.github.io/blob/master/CV.md)
+# try
 
+# try
 
-## [f](https://github.com/mcl868/mcl868.github.io/blob/master/index.md#rk)
+# try
 
-## ra
+# try
 
-## rs
+# try
 
-## rf
+# rh
 
-## rg
+# try
 
-## rh
-
-## rj
-
-## rk
-
+# Rpackage at GitHub
+## - [TicTacToe](https://github.com/mcl868/TicTacToe/blob/master/README.md)
+## - [AIPW](https://github.com/mcl868/causalinmisdata/blob/master/README.md)
+## - [HelpPackage](https://github.com/mcl868/HelpPackage/blob/master/README.md)
