@@ -1,18 +1,4 @@
-# try
-
-# try
-
-# try
-
-# try
-
-# try
-
-# try
-
-# rh
-
-# try
+# Thomas Maltesen
 
 # Rpackage at GitHub
 ## - [TicTacToe](https://github.com/mcl868/TicTacToe/blob/master/README.md)
