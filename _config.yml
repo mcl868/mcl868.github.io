@@ -1,5 +1,5 @@
 theme              : jekyll-theme-cayman
-title              : Welcome1
+title              : Welcome
 description        : PhD student
 url                : https://mcl868.github.io/
 
@@ -24,7 +24,7 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : 
+  linkedin         : "https://www.linkedin.com/in/thomas-maltesen-b69889ab/"
   orcid            : 
   pinterest        :
   soundcloud       :
