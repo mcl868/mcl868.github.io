@@ -1,15 +1,8 @@
 # Thomas Maltesen
 ## CV
 - Industrial PHD Student at Lundbeck
-- [Skills](https://github.com/mcl868/mcl868.github.io/blob/master/README.md#skills)
 - [LinkedIn](https://dk.linkedin.com/in/thomas-maltesen-b69889ab)
 - Myers-Briggs Type Indikator: ISTJ
-
-## Rpackage at GitHub
-- [TicTacToe](https://mcl868.github.io/TicTacToe/)
-- [Causal inference in missing data](https://mcl868.github.io/causalinmisdata/)
-- [HelpPackage](https://mcl868.github.io/HelpPackage/)
-
 
 ## Skills
 ### Employment
@@ -32,10 +25,17 @@
 - LaTeX
 - Microsoft Office
 
-### Other Information
-Languages 
+### Languages 
 - Danish (Native language)
 - English (Fluen)
 - Swedish (Limited)
 - Norwegian (Limited)
 - German (Limited)
+
+## Rpackage at GitHub
+- [Causal inference in missing data](https://mcl868.github.io/causalinmisdata/)
+- [HelpPackage](https://mcl868.github.io/HelpPackage/)
+- [TicTacToe](https://mcl868.github.io/TicTacToe/)
+
+## Co-authors
+-gg
