@@ -37,3 +37,5 @@ author:
   youtube          :
   wikipedia        :
   wordpress        : 
+
+theme: jekyll-theme-modernist
