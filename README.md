@@ -1,10 +1,10 @@
-# Thomas Maltesen
-
-## CV
+# CV
+- Thomas Maltesen
 - Industrial PHD Student at Lundbeck
-- Myers-Briggs Type Indikator: ISTJ
-- [LinkedIn](https://dk.linkedin.com/in/thomas-maltesen-b69889ab)
 - [Skills](https://github.com/mcl868/mcl868.github.io/blob/master/README.md#skills)
+--d
+- [LinkedIn](https://dk.linkedin.com/in/thomas-maltesen-b69889ab)
+- Myers-Briggs Type Indikator: ISTJ
 
 
 ## Rpackage at GitHub
