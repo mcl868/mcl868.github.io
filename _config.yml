@@ -1,41 +1,8 @@
-theme              : jekyll-theme-cayman
-title              : Welcome to my homepage
-description        : PhD student
-url                : https://mcl868.github.io/
+theme       : jekyll-theme-slate
+title       : Welcome to my homepage
+description : PhD student
+name        : Thomas Maltesen
+url         : https://mcl868.github.io/
 
-author:
-  name             : "Thomas Maltesen"
-  avatar           : 
-  bio              : 
-  location         : "Copenhagen, Denmark"
-  employer         :
-  googlescholar    : 
-  email            : 
-  uri              :
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         :
-  foursquare       :
-  github           : "mcl868"
-  google_plus      :
-  keybase          :
-  instagram        :
-  lastfm           :
-  linkedin         : "https://www.linkedin.com/in/thomas-maltesen-b69889ab/"
-  orcid            : 
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : 
-  steam            :
-  tumblr           :
-  twitter          : 
-  vine             :
-  weibo            :
-  xing             :
-  youtube          :
-  wikipedia        :
-  wordpress        : 
 
-theme: jekyll-theme-slate
+
