@@ -1,5 +1,6 @@
 # Thomas Maltesen
-##CV
+
+## CV
 
 ## Rpackage at GitHub
 ## - [TicTacToe](https://mcl868.github.io/TicTacToe/)
