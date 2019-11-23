@@ -1,7 +1,7 @@
 # Thomas Maltesen
 ## CV
 - Industrial PHD Student at Lundbeck
-- [Skills](https://github.com/mcl868/mcl868.github.io/blob/master/README.md#skills) -d
+- [Skills](https://github.com/mcl868/mcl868.github.io/blob/master/README.md#skills)
 - [LinkedIn](https://dk.linkedin.com/in/thomas-maltesen-b69889ab)
 - Myers-Briggs Type Indikator: ISTJ
 
@@ -23,18 +23,19 @@
 - 2009-2012 Bachelor of Science (BSc) in Actuarial Mathematic
 - 2006-2009 Virum Gymnasium (Level A Mathematics and Chemistry)
 
-# Other Information
-Languages & $\bullet$ Danish - Native language \\
-& $\bullet$ English - Fluen\\
-& $\bullet$ Swedish - Limited\\
-& $\bullet$ Norwegian - Limited\\
-& $\bullet$ German - Limited\\
-\vspace{10pt}\\
-IT Skills & $\bullet$ R\\
-& $\bullet$ GitHub\\
-& $\bullet$ SAS\\
-& $\bullet$ C++\\
-& $\bullet$ Mplus\\
-& $\bullet$ \LaTeX\\
-& $\bullet$ Microsoft Office\\
-\end{longtable}
+### IT Skills
+- R
+- GitHub
+- SAS\\
+- C++
+- Mplus
+- LaTeX
+- Microsoft Office
+
+### Other Information
+Languages 
+- Danish (Native language)
+- English (Fluen)
+- Swedish (Limited)
+- Norwegian (Limited)
+- German (Limited)
