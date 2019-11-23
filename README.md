@@ -19,7 +19,7 @@
 ### IT Skills
 - R
 - GitHub
-- SAS\\
+- SAS
 - C++
 - Mplus
 - LaTeX
