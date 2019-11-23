@@ -1,5 +1,5 @@
 # Thomas Maltesen
-## CV
+## Curriculum vitae
 - Industrial PHD Student at Lundbeck
 - [LinkedIn](https://dk.linkedin.com/in/thomas-maltesen-b69889ab)
 - Myers-Briggs Type Indikator: ISTJ
