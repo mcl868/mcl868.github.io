@@ -2,8 +2,6 @@ theme              : jekyll-theme-cayman
 title              : Welcome
 description        : PhD student
 url                : https://mcl868.github.io/
-linkedin           : "https://www.linkedin.com/in/thomas-maltesen-b69889ab/"
-email              : "thma@sund.ku.dk"
 
 author:
   name             : "Thomas Maltesen"
@@ -12,7 +10,7 @@ author:
   location         : "Copenhagen, Denmark"
   employer         :
   googlescholar    : 
-  email            : "thma@sund.ku.dk"
+  email            : 
   uri              :
   bitbucket        :
   codepen          :
