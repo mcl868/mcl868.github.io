@@ -1,9 +1,19 @@
 # Thomas Maltesen
+
+## R-package at GitHub
+- [Causal inference in missing data](https://mcl868.github.io/causalinmisdata/)
+- [HelpPackage](https://mcl868.github.io/HelpPackage/)
+- [TicTacToe](https://mcl868.github.io/TicTacToe/)
+
+## Tex-files at GitHub
+- [Tex](https://mcl868.github.io/Tex/)
+
+
 ## Curriculum vitae
+### Personal
 - Industrial PHD Student at Lundbeck
 - Myers-Briggs Type Indikator: ISTJ
 
-## Skills
 ### Employment
 - 2017-Now PhD student at H.Lundbeck and Department of Public Health, Section of Biostatistics - University of Copenhagen
 - 2015-2017 Research Assistant at Department of Public Health, Section of Biostatistics - University of Copenhagen
@@ -30,9 +40,3 @@
 - Swedish (Limited)
 - Norwegian (Limited)
 - German (Limited)
-
-## Rpackage at GitHub
-- [Causal inference in missing data](https://mcl868.github.io/causalinmisdata/)
-- [HelpPackage](https://mcl868.github.io/HelpPackage/)
-- [TicTacToe](https://mcl868.github.io/TicTacToe/)
-- [Tex](https://mcl868.github.io/Tex/)
