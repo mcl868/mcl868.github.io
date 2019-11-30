@@ -2,6 +2,11 @@ body {
   text-align: left;
   background-color: #e1e4f6;
 }
+button {
+  text-align: center;
+  text-emphasis-color: white;
+  background-color: #1515ed;
+}
 h1 {
   text-align: center;
 }
