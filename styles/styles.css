@@ -1,25 +1,26 @@
 body {
   text-align: left;
-  background-color: #e1e4f6;
+    font-size: 1.2em;
+    background-color: #ccc;
+    margin: 40px;
+    padding: 40px;
 }
-button {
-  text-align: center;
-  text-emphasis-color: white;
-  background-color: #1515ed;
-}
+
 h1 {
   text-align: center;
 }
+
 h6 {
   text-align: center;
 }
+
 div {
   margin-top: 15px;
 }
 
 .image-section {
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
 .section-style {
