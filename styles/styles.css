@@ -39,3 +39,9 @@ figure {
   margin: 0.5em;
   padding: 0.5em;
 }
+
+lines {
+  float: center;
+  text-align: center;
+  font-style: italic;
+}
