@@ -17,13 +17,6 @@ h6 {
 div {
   margin-top: 15px;
 }
-red {
-  color: #ff1100;
-}
-
-blue {
-  color: #000ccc;
-}
 .image-section {
   display: flex;
   justify-content: right;
