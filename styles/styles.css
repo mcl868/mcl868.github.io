@@ -40,6 +40,7 @@ figurefront {
 }
 
 figure {
+  display: block;
   float: right;
   width: 52%;
   text-align: center;
