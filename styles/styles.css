@@ -58,3 +58,10 @@ lines {
   text-align: center;
   font-style: italic;
 }
+
+
+section { 
+  display: block;
+  height: 100%;
+  padding-top: 20px;
+}
