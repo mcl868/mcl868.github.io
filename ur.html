@@ -24,7 +24,7 @@ h1{font-size:1.1rem;font-weight:600;margin:0;color:var(--mute)}
 .seg button{border:none;background:transparent;color:var(--ink);padding:9px 18px;font-size:.95rem;cursor:pointer;font-family:inherit}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--on)}
 .dial{position:relative;width:min(66vw,260px);aspect-ratio:1}
-svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
 .track{fill:none;stroke:var(--track);stroke-width:10}
 .bar{fill:none;stroke:var(--accent);stroke-width:10;stroke-linecap:round;stroke-dasharray:628.32;stroke-dashoffset:0;transition:stroke-dashoffset .25s linear,stroke .2s}
 .next .bar,.done .bar{stroke:var(--done)}
@@ -35,6 +35,14 @@ svg{width:100%;height:100%;transform:rotate(-90deg)}
 .now{text-align:center;min-height:84px}
 .now h2{margin:0;font-size:1.35rem;font-weight:600}
 .now p{margin:6px 0 0;color:var(--mute);font-size:.95rem}
+.now .desc{color:var(--ink);background:var(--surf);border-radius:14px;padding:12px 14px;margin:12px 0 4px;text-align:left;line-height:1.5}
+.desc:empty{display:none}
+.pic{display:block;margin:10px auto 14px;width:min(100%,240px);aspect-ratio:200/110;overflow:hidden}.pic:empty{display:none}
+.pic svg{display:block;width:100%;height:100%;overflow:hidden}
+.pic .g{fill:none;stroke:var(--track);stroke-width:4;stroke-linecap:round}
+.pic .b{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.pic .h{fill:var(--accent)}
+.flip .tv{transform:scaleY(-1)}
 .actions{display:flex;gap:10px;width:100%}
 .actions button{height:56px;border-radius:16px;border:none;font-size:1.1rem;font-weight:600;cursor:pointer;font-family:inherit}
 #go{flex:1;background:var(--accent);color:var(--on)}
@@ -54,7 +62,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 </head>
 <body>
 <main id="app">
-  <h1>Yin yoga: 11 øvelser</h1>
+  <h1>Yin yoga: 9 øvelser</h1>
   <div class="seg" id="seg">
     <span>Artiklen angiver flere steder et spænd. Vælg længde:</span>
     <div><button data-k="0">Kort</button><button data-k="1" aria-pressed="true">Mellem</button><button data-k="2">Lang</button></div>
@@ -63,7 +71,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
     <svg viewBox="0 0 220 220" aria-hidden="true"><circle class="track" cx="110" cy="110" r="100"/><circle class="bar" id="bar" cx="110" cy="110" r="100"/></svg>
     <div class="time"><b id="clock" role="timer" aria-live="off">3:00</b><span id="status">Klar</span></div>
   </div>
-  <div class="now"><h2 id="nowT"></h2><p id="nowS"></p><p id="nextT"></p></div>
+  <div class="now"><h2 id="nowT"></h2><p id="nowS"></p><div id="pic" class="pic"></div><p id="nowD" class="desc"></p><p id="nextT"></p></div>
   <div class="actions">
     <button id="reset" class="hidden">Nulstil</button>
     <button id="prev" class="hidden" aria-label="Forrige stilling">‹</button>
@@ -77,7 +85,10 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 (function(){
 var $=function(i){return document.getElementById(i)};
 // navn, træner, min (kort), max (lang), antal sider
-var EX=[["Stående foroverbøjning","Bagsiden af kroppen",3,3,1],["Foroverbøjning med krydsede ben","Det bagerste bens haser",2,2,2],["Naturstillingen","Hofteled, knæ og ankler",3,3,1],["Gorillaen","Tæer og håndled",1,2,1],["Sfinks","Det naturlige lændesvaj",3,5,1],["Sovende svane","Hofte- og knæled samt balder",3,5,2],["Brækket vinge","Forsiden af skulderleddet",1,2,2],["Søstjernen","Bagsiden af skulderleddet",3,5,2],["Twist","Hele rygsøjlen",3,5,2],["Stjernekigger","Begge sider af kroppen",3,5,2],["Hvilestilling","Krop og sind (5 minutter eller længere)",5,5,1]];
+var EX=[["Naturstillingen","Hofteled, knæ og ankler",3,3,1],["Gorillaen","Tæer og håndled",1,2,1],["Sfinks","Det naturlige lændesvaj",3,5,1],["Sovende svane","Hofte- og knæled samt balder",3,5,2],["Brækket vinge","Forsiden af skulderleddet",1,2,2],["Søstjernen","Bagsiden af skulderleddet",3,5,2],["Twist","Hele rygsøjlen",3,5,2],["Stjernekigger","Begge sider af kroppen",3,5,2],["Hvilestilling","Krop og sind (5 minutter eller længere)",5,5,1]];
+function fig(d,hx,hy,tv){return '<svg viewBox="0 0 200 110"'+(tv?' class="tv"':'')+' aria-hidden="true">'+(tv?'':'<path class="g" d="M10 96H190"/>')+'<path class="b" d="'+d+'"/><circle class="h" cx="'+hx+'" cy="'+hy+'" r="9"/></svg>'}
+var IMG=[fig('M86 93H106M94 92L120 62L98 80L110 48M110 48L126 58',116,36),fig('M60 92H84M84 92V54H146M146 54L150 92',158,50),fig('M30 90L92 88L128 64M128 64V90H160',140,50),fig('M30 92L100 84M100 84L128 90L108 92M100 84L150 70L176 90',164,78),fig('M30 60H130M130 60V100M80 60L52 34',150,60,1),fig('M30 60H130M130 60V22M80 60L40 90',150,60,1),fig('M70 56H130M130 56V20M70 56L90 88L58 94',150,56,1),fig('M30 84L80 62L125 46L128 24L148 38',150,50,1),fig('M80 60H130M130 60L100 36M130 60L100 84M80 60L30 46M80 60L30 74',148,60,1)];
+var DESC=["Stå lidt bredere end hofterne med tæer og knæ drejet let udad, og sæt dig på hug. Vælg en afstand mellem benene, der passer til dine knæ. Før håndfladerne sammen, og pres albuerne let mod knæene.","Kom ned på alle fire. Saml fødderne, og bøj tæerne ind under dig. Vend hænderne, så fingrene peger ind mod kroppen. Juster presset på håndled og tæer ved at flytte vægten frem og tilbage.","Lig på maven med benene spredt og fødderne pegende udad. Støt dig på underarmene med albuerne lidt foran skuldrene og hænderne samlet. Slap af i underkroppen, så maven synker mod underlaget.","Start på alle fire. Træk det ene knæ frem, og lad det falde lidt ud til siden, mens det andet ben glider bagud. Læn dig frem på underarmene, eller sænk dig helt ned og hvil panden mod håndryggene. Skift side anden gang.","Lig på venstre side med kinden mod underlaget og venstre arm vinkelret bagud, håndfladen nedad. Sæt højre fod bag venstre ben, og drej overkroppen bagud, så langt du kan. Skift side anden gang.","Lig på ryggen med venstre arm ud til siden og håndfladen opad. Skub fra med højre fod, og rul helt om på maven. Vil du have mere stræk, kan du trække venstre knæ op som et frølår. Skift side anden gang.","Lig på ryggen med fødderne i gulvet. Kryds højre ben over venstre, og sænk begge ben mod venstre side. Før højre arm i en bue over ansigtet og ud til siden, og lad den hvile. Drej hovedet, og se mod hånden. Skift side anden gang.","Lig på ryggen med hænderne foldet bag hovedet. Flyt overkroppen lidt mod venstre. Før først venstre og så højre ben ud til samme side, så højre fod hviler oven på den venstre. Skift side, og læg modsatte ben øverst.","Lig på ryggen med lidt afstand mellem benene og armene ud fra kroppen, håndfladerne opad. Læg evt. et tæppe over dig. Tag tre dybe vejrtrækninger, og mærk roen brede sig. Du kan blive liggende længere end tiden."];
 var app=$('app'),k=1,steps=[],idx=0,state='idle',total=0,left=0,endAt=0,tick=null,ctx=null,alarmTimer=null,alarmEl=null,silentEl=null,unlocked=false,C=628.32;
 function dur(e){return Math.round((e[2]+(e[3]-e[2])*k/2)*60)}
 function build(){steps=[];EX.forEach(function(e,i){for(var s=0;s<e[4];s++)steps.push({i:i,s:s,n:e[4],sec:dur(e)})});idx=0;total=left=steps[0].sec}
@@ -97,6 +108,8 @@ function render(){
   $('reset').classList.toggle('hidden',!run);$('prev').classList.toggle('hidden',!live);$('next').classList.toggle('hidden',!live);
   $('go').textContent={idle:'Start',running:'Pause',paused:'Fortsæt',done:'Stop lyd'}[state];
   var nx=steps[idx+1];
+  $('nowD').textContent=(state==='running'||state==='paused')?DESC[s.i]:'';
+  $('pic').innerHTML=(state==='running'||state==='paused')?IMG[s.i]:'';$('pic').className='pic'+(s.s?' flip':'');
   if(state==='idle'){
     var t=0;steps.forEach(function(x){t+=x.sec});var mn=Math.round(t/60);
     $('nowT').textContent=EX.length+' øvelser, '+steps.length+' stillinger';
