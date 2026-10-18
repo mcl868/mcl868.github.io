@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Yin yoga">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#eaf2f0">
+<title>Yin yoga-ur</title>
+<style>
+:root{--bg:#eaf2f0;--ink:#10302e;--mute:#587573;--track:#cbdcd9;--accent:#0e7a72;--on:#fff;--surf:#fff;--done:#d2452a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a19;--ink:#e3f1ef;--mute:#8fb0ac;--track:#25403d;--accent:#3cc2b6;--on:#06201d;--surf:#142826;--done:#ff7a5c}}
+:root[data-theme="dark"]{--bg:#0c1a19;--ink:#e3f1ef;--mute:#8fb0ac;--track:#25403d;--accent:#3cc2b6;--on:#06201d;--surf:#142826;--done:#ff7a5c}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;justify-content:center}
+main{width:100%;max-width:440px;padding:24px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:18px}
+h1{font-size:1.1rem;font-weight:600;margin:0;color:var(--mute)}
+.seg{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--mute);font-size:.9rem;text-align:center}
+.seg div{display:flex;border:1.5px solid var(--track);border-radius:999px;overflow:hidden}
+.seg button{border:none;background:transparent;color:var(--ink);padding:9px 18px;font-size:.95rem;cursor:pointer;font-family:inherit}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on)}
+.dial{position:relative;width:min(66vw,260px);aspect-ratio:1}
+svg{width:100%;height:100%;transform:rotate(-90deg)}
+.track{fill:none;stroke:var(--track);stroke-width:10}
+.bar{fill:none;stroke:var(--accent);stroke-width:10;stroke-linecap:round;stroke-dasharray:628.32;stroke-dashoffset:0;transition:stroke-dashoffset .25s linear,stroke .2s}
+.next .bar,.done .bar{stroke:var(--done)}
+.time{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.time b{font-size:clamp(2.8rem,14vw,3.8rem);font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}
+.time span{margin-top:8px;color:var(--mute);font-size:.9rem}
+.next .time b,.done .time b{color:var(--done)}
+.now{text-align:center;min-height:84px}
+.now h2{margin:0;font-size:1.35rem;font-weight:600}
+.now p{margin:6px 0 0;color:var(--mute);font-size:.95rem}
+.actions{display:flex;gap:10px;width:100%}
+.actions button{height:56px;border-radius:16px;border:none;font-size:1.1rem;font-weight:600;cursor:pointer;font-family:inherit}
+#go{flex:1;background:var(--accent);color:var(--on)}
+.done #go{background:var(--done);color:#fff}
+#reset,#prev,#next{background:var(--surf);color:var(--ink);border:1.5px solid var(--track)}
+#reset{padding:0 16px}#prev,#next{width:56px;font-size:1.5rem}
+.test{background:none;border:none;color:var(--mute);font-size:.95rem;text-decoration:underline;cursor:pointer;font-family:inherit;padding:6px}
+ol{list-style:none;margin:6px 0 0;padding:0;width:100%}
+li{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:12px;font-size:.98rem;border-left:4px solid transparent}
+li small{color:var(--mute);white-space:nowrap}
+li.cur{background:var(--surf);border-left-color:var(--accent);font-weight:600}
+li.old{opacity:.42}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.hidden{display:none!important}
+@media (prefers-reduced-motion:reduce){.bar{transition:none}}
+</style>
+</head>
+<body>
+<main id="app">
+  <h1>Yin yoga: 11 øvelser</h1>
+  <div class="seg" id="seg">
+    <span>Artiklen angiver flere steder et spænd. Vælg længde:</span>
+    <div><button data-k="0">Kort</button><button data-k="1" aria-pressed="true">Mellem</button><button data-k="2">Lang</button></div>
+  </div>
+  <div class="dial">
+    <svg viewBox="0 0 220 220" aria-hidden="true"><circle class="track" cx="110" cy="110" r="100"/><circle class="bar" id="bar" cx="110" cy="110" r="100"/></svg>
+    <div class="time"><b id="clock" role="timer" aria-live="off">3:00</b><span id="status">Klar</span></div>
+  </div>
+  <div class="now"><h2 id="nowT"></h2><p id="nowS"></p><p id="nextT"></p></div>
+  <div class="actions">
+    <button id="reset" class="hidden">Nulstil</button>
+    <button id="prev" class="hidden" aria-label="Forrige stilling">‹</button>
+    <button id="go">Start</button>
+    <button id="next" class="hidden" aria-label="Næste stilling">›</button>
+  </div>
+  <button id="test" class="test">Test lyden</button>
+  <ol id="list"></ol>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+// navn, træner, min (kort), max (lang), antal sider
+var EX=[["Stående foroverbøjning","Bagsiden af kroppen",3,3,1],["Foroverbøjning med krydsede ben","Det bagerste bens haser",2,2,2],["Naturstillingen","Hofteled, knæ og ankler",3,3,1],["Gorillaen","Tæer og håndled",1,2,1],["Sfinks","Det naturlige lændesvaj",3,5,1],["Sovende svane","Hofte- og knæled samt balder",3,5,2],["Brækket vinge","Forsiden af skulderleddet",1,2,2],["Søstjernen","Bagsiden af skulderleddet",3,5,2],["Twist","Hele rygsøjlen",3,5,2],["Stjernekigger","Begge sider af kroppen",3,5,2],["Hvilestilling","Krop og sind (5 minutter eller længere)",5,5,1]];
+var app=$('app'),k=1,steps=[],idx=0,state='idle',total=0,left=0,endAt=0,tick=null,ctx=null,alarmTimer=null,alarmEl=null,silentEl=null,unlocked=false,C=628.32;
+function dur(e){return Math.round((e[2]+(e[3]-e[2])*k/2)*60)}
+function build(){steps=[];EX.forEach(function(e,i){for(var s=0;s<e[4];s++)steps.push({i:i,s:s,n:e[4],sec:dur(e)})});idx=0;total=left=steps[0].sec}
+function fm(sec){var m=Math.floor(sec/60),r=sec%60;return (m?m+' min':'')+(m&&r?' ':'')+(r?r+' s':'')}
+function fc(s){s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function sideTxt(s){return s.n>1?(s.s?'Anden side':'Første side'):''}
+function renderList(){$('list').innerHTML=EX.map(function(e,i){return '<li id="li'+i+'"><span>'+(i+1)+'. '+e[0]+'</span><small>'+fm(dur(e))+(e[4]>1?' pr. side':'')+'</small></li>'}).join('')}
+function draw(){
+  $('clock').textContent=fc(left);
+  $('bar').style.strokeDashoffset=total?C*(1-left/total):0;
+  document.title=state==='running'?fc(left)+' – Yin yoga-ur':'Yin yoga-ur';
+}
+function render(){
+  var s=steps[idx],e=EX[s.i],run=state!=='idle',live=state==='running'||state==='paused';
+  app.classList.toggle('done',state==='done');
+  $('seg').classList.toggle('hidden',run);$('test').classList.toggle('hidden',run);
+  $('reset').classList.toggle('hidden',!run);$('prev').classList.toggle('hidden',!live);$('next').classList.toggle('hidden',!live);
+  $('go').textContent={idle:'Start',running:'Pause',paused:'Fortsæt',done:'Stop lyd'}[state];
+  var nx=steps[idx+1];
+  if(state==='idle'){
+    var t=0;steps.forEach(function(x){t+=x.sec});var mn=Math.round(t/60);
+    $('nowT').textContent=EX.length+' øvelser, '+steps.length+' stillinger';
+    $('nowS').textContent='I alt cirka '+(mn>=60?Math.floor(mn/60)+' t '+(mn%60?mn%60+' min':''):mn+' min');$('nextT').textContent='';
+    $('status').textContent='Klar';
+  }else if(state==='done'){
+    $('nowT').textContent='Færdig';$('nowS').textContent='Alle øvelser er gennemført';$('nextT').textContent='';$('status').textContent='Godt gået';
+  }else{
+    $('nowT').textContent=(s.i+1)+'. '+e[0];
+    $('nowS').textContent=e[1]+(s.n>1?' – '+sideTxt(s).toLowerCase():'');
+    $('nextT').textContent=nx?'Næste: '+EX[nx.i][0]+(nx.n>1?' ('+sideTxt(nx).toLowerCase()+')':''):'Næste: færdig';
+    $('status').textContent=(state==='paused'?'På pause – ':'')+'Stilling '+(idx+1)+' af '+steps.length;
+  }
+  EX.forEach(function(x,i){var li=$('li'+i);li.className=state==='done'||(run&&i<s.i)?'old':(run&&i===s.i?'cur':'')});
+  draw();
+}
+// lyd
+function wavUri(secs,fn){
+  var sr=22050,n=Math.floor(sr*secs),b=new Uint8Array(44+n*2),v=new DataView(b.buffer);
+  function w(o,s){for(var i=0;i<s.length;i++)b[o+i]=s.charCodeAt(i)}
+  w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
+  for(var i=0;i<n;i++)v.setInt16(44+i*2,Math.max(-1,Math.min(1,fn(i/sr)))*32767,true);
+  var s='';for(var j=0;j<b.length;j+=8192)s+=String.fromCharCode.apply(null,b.subarray(j,j+8192));
+  return 'data:audio/wav;base64,'+btoa(s);
+}
+function alarmWave(t){var s=0,f=[880,1175,1568];for(var q=0;q<2;q++)for(var i=0;i<3;i++){var d=t-(q*1.1+i*.22);if(d>=0&&d<.6)s+=Math.sin(6.2832*f[i]*d)*Math.min(d/.02,1)*Math.exp(-d*7)*.45}return s}
+function audio(keep){
+  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume()}catch(e){}
+  try{
+    if(!alarmEl){alarmEl=new Audio(wavUri(2.4,alarmWave));alarmEl.preload='auto';silentEl=new Audio(wavUri(1,function(){return 0}));silentEl.loop=true}
+    if(keep){
+      if(!unlocked){unlocked=true;alarmEl.muted=true;var p=alarmEl.play();if(p&&p.then)p.then(function(){alarmEl.pause();alarmEl.currentTime=0;alarmEl.muted=false}).catch(function(){alarmEl.muted=false})}
+      var q=silentEl.play();if(q&&q.catch)q.catch(function(){});
+    }
+  }catch(e){}
+}
+function beep(t,f,d){var o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.4,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+d);o.start(t);o.stop(t+d+.05)}
+function webChime(){if(!ctx)return;if(ctx.state==='suspended')ctx.resume();var t=ctx.currentTime+.05;[880,1175,1568].forEach(function(f,i){beep(t+i*.22,f,.5)})}
+function chime(){
+  var ok=false;
+  try{if(alarmEl){alarmEl.muted=false;alarmEl.currentTime=0;var p=alarmEl.play();if(p&&p.catch)p.catch(webChime);ok=true}}catch(e){}
+  if(!ok)webChime();
+  if(navigator.vibrate)try{navigator.vibrate([300,150,300])}catch(e){}
+}
+function stopAlarm(){clearInterval(alarmTimer);alarmTimer=null;try{if(alarmEl)alarmEl.pause();if(silentEl)silentEl.pause()}catch(e){}}
+// ur
+function start(){audio(true);endAt=Date.now()+left*1000;state='running';clearInterval(tick);tick=setInterval(step,200);render()}
+function pause(){clearInterval(tick);left=(endAt-Date.now())/1000;state='paused';try{silentEl.pause()}catch(e){}render()}
+function step(){
+  left=(endAt-Date.now())/1000;
+  if(left<=0){
+    var adv=false;
+    while(left<=0&&idx<steps.length-1){idx++;total=steps[idx].sec;endAt+=total*1000;left=(endAt-Date.now())/1000;adv=true}
+    if(left<=0){left=0;clearInterval(tick);finish();return}
+    if(adv){chime();render();app.classList.add('next');setTimeout(function(){app.classList.remove('next')},1800)}
+  }
+  draw();
+}
+function finish(){
+  state='done';left=0;try{silentEl.pause()}catch(e){}render();chime();
+  var n=0;alarmTimer=setInterval(function(){n++;if(n>=8){stopAlarm();return}chime()},2600);
+}
+function skip(d){var ni=idx+d;if(ni<0||ni>=steps.length)return;idx=ni;total=left=steps[idx].sec;if(state==='running')endAt=Date.now()+left*1000;render()}
+function doReset(){clearInterval(tick);stopAlarm();state='idle';build();render()}
+$('go').onclick=function(){if(state==='idle'||state==='paused')start();else if(state==='running')pause();else if(state==='done'){stopAlarm();doReset()}};
+$('reset').onclick=doReset;
+$('prev').onclick=function(){skip(-1)};$('next').onclick=function(){skip(1)};
+$('test').onclick=function(){audio();unlocked=true;chime()};
+$('seg').onclick=function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-k');if(v===null||v===undefined)return;k=+v;
+  [].forEach.call($('seg').querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-k')===v?'true':'false')});
+  build();renderList();render()};
+document.addEventListener('visibilitychange',function(){if(state==='running')step()});
+build();renderList();render();
+})();
+</script>
+</body>
+</html>
